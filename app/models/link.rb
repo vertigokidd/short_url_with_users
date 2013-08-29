@@ -18,7 +18,10 @@ class Link < ActiveRecord::Base
   end
 
   def self.validate_url(string)
-    uri = URI.parse(string)
+  	begin
+      uri = URI.parse(string)
+    rescue
+    end
     begin
       Net::HTTP.get_response(uri)
       return true

@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   end
 
   def self.validate_user(email, password)
-    User.find_by_email(email) == User.find_by_password(password)
+    user = User.find_by_email(email)
+    if user != nil
+      return user.password == password
+    else
+      return false
+    end
   end
 end

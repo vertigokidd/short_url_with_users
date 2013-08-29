@@ -33,10 +33,10 @@ get '/logout' do
 end
 
 get '/user/:id' do
-  p params[:id]
   if session[:user] == params[:id]
     erb :user_page
   else
+    session[:user] = nil
     erb :error
   end
 end
@@ -61,7 +61,7 @@ end
 post '/shorten' do
   valid_url = Link.validate_format(params[:long_url])
   if Link.validate_url(valid_url)
-    @long_url = valid_url
+    params[:long_url] = valid_url
     params[:key] = Link.generate_key
     if session[:user] != nil
       params[:user_id] = session[:user]
