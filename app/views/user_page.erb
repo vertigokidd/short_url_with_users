@@ -1,4 +1,20 @@
+<h1 class="title">Buckley</h1>
+
+
 Hi, <%=User.find(params[:id]).first_name%>!
 <br>
+<form class="shorten_form" action="/shorten" method="POST">
+  <input type="text" name="long_url" size="60">
+  <input class="buckley" type="submit" value="Buckley Up!">
+</form>
 <br>
-Go back <a href="/">home</a>
+
+<h2>Your Buckley Links:</h2>
+	<% User.find(params[:id]).links.each do |link| %>
+	  <p><%=link.long_url%>:</p>
+	  <a href="/<%=link.key%>">localhost:9393/<%=link.key%></a><br>
+	<% end %>
+<br>
+<p class="bottom_nav">Go back <a href="/">home</a></p>
+<br><br>
+<p class="bottom_nav"><a href="/logout">Logout</a></p>

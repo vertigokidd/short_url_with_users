@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :links, dependent: :destroy
   # Remember to create a migration!
 
   def self.verify_password(password_one, password_two)

@@ -64,6 +64,10 @@ th {
   text-align: left;
 }
 
+.bottom_nav {
+	margin: 0 0 0 400px;
+}
+
 .signup label, input {
   display:block;
   margin:20px 0 0 0;
