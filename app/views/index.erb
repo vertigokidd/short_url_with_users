@@ -1,23 +1,19 @@
-<div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+<h1 class="title">Buckley</h1>
+<p class="subhead">The link shortener.</p>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+<form class="shorten_form" action="/shorten" method="POST">
+  <input type="text" name="long_url" size="60">
+  <input class="buckley" type="submit" value="Buckley Up!">
+</form>
+
+<div class="index_links">
+<a class="new" href="/new">Create New User</a>
+<a class="users" href="/login">User Login</a>
+</div>
+
+<div class="recent">
+  <h2>Recent Links:</h2>
+  <% Link.last(10).each do |link| %>
+    <a href="http://<%=link.long_url%>">localhost:9393/<%=link.key%></a><br>
+  <% end %>
 </div>
